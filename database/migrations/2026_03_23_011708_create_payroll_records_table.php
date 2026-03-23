@@ -12,10 +12,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payroll_records', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // BIGINT UNSIGNED
             $table->string('payroll_code')->nullable()->unique();
 
-            $table->foreignId('payroll_period_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('payroll_period_id')->constrained()->cascadeOnDelete(); // BIGINT UNSIGNED
 
             $table->string('employee_id', 6);
             $table->foreign('employee_id')->references('employee_id')->on('employees')->cascadeOnDelete();
@@ -32,9 +32,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('payroll_records');
